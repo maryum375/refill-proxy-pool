@@ -9,8 +9,10 @@
   "author": "Ran Mariuma",
   "license": "MIT",
   "dependencies": {
-    "hma-proxy-scraper": "0.0.3",
-    "proxy-pool": "^1.1.3",
+    "fplnet-proxy-scraper": "0.0.2",
+    "hma-proxy-scraper": "0.0.4",
+    "mongodb": "^1.4.40",
+    "proxy-pool": "^1.2.2",
     "xroxy-proxy-scraper": "^1.0.0"
   }
 }
