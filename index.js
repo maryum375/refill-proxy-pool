@@ -3,6 +3,7 @@
  */
 var xroxy = require("xroxy-proxy-scraper");
 var hma = require("hma-proxy-scraper");
+var fplNet = require("fplnet-proxy-scraper");
 var jsProxyPool = require("proxy-pool");
 var config = require('./config');
 
