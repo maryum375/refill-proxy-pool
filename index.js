@@ -11,13 +11,16 @@ var proxypoolDb = new jsProxyPool.MongoAccess(config.dbConnectionString, config.
 var proxyPoolConfiguration = new jsProxyPool.ProxyPoolConfiguration(proxypoolDb, 0);
 var proxyPool = new jsProxyPool.ProxyPool(proxyPoolConfiguration);
 
+var writeLog = function(message) {
+    var currentTime = new Date().toISOString();
+    console.log(currentTime + message);
+}
+
 var proxyAddedCallback = function(error, proxy) {
     if (error) {
         console.log(error);
         return;
     }
-    var currentTime = new Date().toISOString();
-    console.log(currentTime + " - " + proxy + ' added successfully');
 };
 
 var scrapeCallback = function(error, proxies) {
@@ -25,6 +28,7 @@ var scrapeCallback = function(error, proxies) {
         console.log(error);
         return;
     }
+    writeLog(" - adding " + Object.keys(proxies).length + " proxies");
     for (var proxy in proxies) {
         if (proxies.hasOwnProperty(proxy)) {
             proxyPool.addProxy(new jsProxyPool.Proxy(proxy, proxies[proxy]), proxyAddedCallback);
@@ -38,13 +42,15 @@ var startScrapingHma = function() {
 };
 
 var startScrapingXroxy = function() {
+    writeLog(" - scraping Xroxy!");
     xroxy.getProxies(scrapeCallback, 100);
     setTimeout(startScrapingXroxy, 1000 * 60 * 60);
 };
 
 var startScrapingFplNet = function() {
+    writeLog(" - scraping free-proxy-list.net!");
     fplNet.getProxies(scrapeCallback);
-    setTimeout(startScrapingXroxy, 1000 * 60 * 5);
+    setTimeout(startScrapingFplNet, 1000 * 60 * 10);
 };
 
 //startScrapingHma();
