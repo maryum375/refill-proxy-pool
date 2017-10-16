@@ -12,7 +12,7 @@
     "fplnet-proxy-scraper": "0.0.2",
     "hma-proxy-scraper": "0.0.4",
     "mongodb": "^1.4.40",
-    "proxy-pool": "^1.2.2",
+    "proxy-pool": "^1.2.6",
     "xroxy-proxy-scraper": "^1.0.0"
   }
 }
